@@ -1,0 +1,28 @@
+# {{ ansible_managed }}
+---
+version: "3"
+
+services:
+  homeassistant:
+    image: "{{ homeassistant_docker_image }}"
+    container_name: homeassistant
+    restart: unless-stopped
+    privileged: true
+    network_mode: host
+    {%- if homeassistant_docker_environment | length and homeassistant_docker_environment is iterable %}
+    environment:
+      {%- for item in homeassistant_docker_environment %}
+      - {{ item }}
+      {%- endfor %}
+    {%- endif %}
+    {%- if homeassistant_docker_devices | length and homeassistant_docker_devices is iterable %}
+    # device passthrough (e.g. /dev/ttyUSB0:/dev/ttyUSB0)
+    devices:
+      {%- for item in homeassistant_docker_devices %}
+      - {{ item }}:{{ item }}
+      {%- endfor %}
+    {%- endif %}
+    volumes:
+      - /run/dbus:/run/dbus:ro
+      - /etc/localtime:/etc/localtime:ro
+      - {{ homeassistant_docker_path }}/config:/config:rw

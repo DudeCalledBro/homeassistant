@@ -1,0 +1,8 @@
+- hosts: all
+  roles:
+  - role: homeassistant
+
+  post_tasks:
+  - name: Ensure Home Assistant is reachable
+    ansible.builtin.wait_for:
+      port: 8123

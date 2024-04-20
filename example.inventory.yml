@@ -1,0 +1,17 @@
+all:
+  hosts:
+    homeassistant.local:
+      # [DockerHub](https://hub.docker.com/r/homeassistant/home-assistant)
+      homeassistant_docker_image: "homeassistant/home-assistant:latest"
+
+  vars:
+    # Home Assistant Docker Variables (defined as list)
+    homeassistant_docker_environment:
+    - "TZ=Europe/Berlin"
+
+    # Home Assistant Docker Devices (defined as list)
+    homeassistant_docker_devices:
+    - /dev/ttyUSB0:/dev/ttyUSB0
+    - /dev/ttyUSB1:/dev/ttyUSB1
+    - /dev/hidraw0:/dev/hidraw0
+    - /dev/hidraw1:/dev/hidraw1

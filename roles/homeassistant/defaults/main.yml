@@ -1,0 +1,12 @@
+homeassistant_docker_path: /opt/homeassistant
+homeassistant_docker_file_owner: root
+homeassistant_docker_file_group: root
+
+# home assistant docker image (stable release)
+homeassistant_docker_image: "homeassistant/home-assistant:latest"
+
+# home assistant docker environment variables
+homeassistant_docker_environment: []
+
+# home assistant docker devices
+homeassistant_docker_devices: []
