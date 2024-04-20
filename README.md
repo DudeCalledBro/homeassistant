@@ -1,5 +1,7 @@
 # HomeAssistant
 
+[![CI](https://github.com/DudeCalledBro/homeassistant/actions/workflows/ci.yml/badge.svg)](https://github.com/DudeCalledBro/homeassistant/actions/workflows/ci.yml)
+
 This repository contains my ansible deployment for Home Assistant. I am using Home Assistant with Docker, because it's the most flexible and easiest solution for me.
 
 ## Prerequisites
