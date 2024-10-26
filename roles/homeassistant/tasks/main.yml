@@ -1,4 +1,4 @@
-- name: Create Home Assistant Directory
+- name: Create home assistant directory
   ansible.builtin.file:
     path: "{{ homeassistant_docker_path }}"
     owner: "{{ homeassistant_docker_file_owner }}"
@@ -6,7 +6,7 @@
     state: directory
     mode: 0755
 
-- name: Create Docker Compose File
+- name: Create home assistant docker compose file
   ansible.builtin.template:
     src: docker-compose.yml.j2
     dest: "{{ homeassistant_docker_path }}/docker-compose.yml"
@@ -16,15 +16,15 @@
     mode: 0644
   notify: restart homeassistant
 
-- name: Validate Docker Compose File
-  ansible.builtin.command: docker-compose config --quiet
+- name: Validate docker compose file
+  ansible.builtin.command: docker compose config --quiet
   args:
     chdir: "{{ homeassistant_docker_path }}"
   changed_when: false
 
-- name: Startup Container
+- name: Startup container
   ansible.builtin.command: >-
-    docker-compose --ansi never --progress plain up --detach
+    docker compose --ansi never --progress plain up --detach
   args:
     chdir: "{{ homeassistant_docker_path }}"
   register: homeassistant_container_startup
